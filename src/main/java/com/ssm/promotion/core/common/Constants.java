@@ -10,6 +10,8 @@ public class Constants {
     public static final int RESULT_CODE_SERVER_ERROR = 500;  // 没有对应结果
 
     public static final String ARTICLE_CACHE_KEY = "perfect-ssm:article:";//文章key
+    public static final String MESSAGE_CACHE_KEY = "perfect-ssm:message:";//留言key
     public static final String PICTURE_CACHE_KEY = "perfect-ssm:picture:";//图片key
+    public static final String VIDEO_CACHE_KEY   = "perfect-ssm:video:";  //视频key
 
 }

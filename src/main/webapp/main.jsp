@@ -85,12 +85,7 @@
              data-options="selected:true,iconCls:'icon-wenzhangs'"
              style="padding: 10px;height:10px;">
             <a
-                    href="javascript:openTab(' 文章管理-ue','articleManage-ue.jsp','icon-wenzhang')"
-                    class="easyui-linkbutton"
-                    data-options="plain:true,iconCls:'icon-wenzhang'"
-                    style="width: 150px;"> UEditor</a>
-            <a
-                    href="javascript:openTab(' 文章管理-ke','articleManage-ke.jsp','icon-wenzhang')"
+                    href="javascript:openTab(' 文章管理','articleManage-ke.jsp','icon-wenzhang')"
                     class="easyui-linkbutton"
                     data-options="plain:true,iconCls:'icon-wenzhang'"
                     style="width: 150px;"> kindEditor(推荐)</a>
@@ -102,6 +97,23 @@
                     class="easyui-linkbutton"
                     data-options="plain:true,iconCls:'icon-tupian'"
                     style="width: 150px;"> 图片设置</a>
+        </div>
+        <div title="视频管理" data-options="iconCls:'icon-shouye'"
+             style="padding:10px">
+            <a
+                    href="javascript:openTab(' 视频设置','videoManage.jsp','icon-tupians')"
+                    class="easyui-linkbutton"
+                    data-options="plain:true,iconCls:'icon-tupians'"
+                    style="width: 150px;"> 视频设置</a>
+        </div>
+        <div title="留言管理"
+            data-options="plain:true,iconCls:'icon-wenzhangs'"
+             style="padding: 10px">
+                <a
+                     href="javascript:openTab(' 留言管理','messageManage.jsp','icon-wenzhang')"
+                     class="easyui-linkbutton"
+                     data-options="plain:true,iconCls:'icon-wenzhang'"
+                     style="width: 150px;"> 留言列表</a>
         </div>
         <div title="系统管理" data-options="iconCls:'icon-item'"
              style="padding:10px;border:none;">

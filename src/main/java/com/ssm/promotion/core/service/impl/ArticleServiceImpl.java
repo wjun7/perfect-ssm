@@ -53,6 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (article.getArticleTitle() == null || article.getArticleContent() == null || getTotalArticle(null) > 90 || article.getArticleContent().length() > 50000) {
             return 0;
         }
+        //下面这行不明白
         article.setArticleTitle(AntiXssUtil.replaceHtmlCode(article.getArticleTitle()));
         if (articleDao.updArticle(article) > 0) {
             log.info("update article success,delete article in redis and save again");

@@ -1,10 +1,12 @@
 package com.ssm.promotion.core.dao;
 
 import com.ssm.promotion.core.entity.Article;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
+@Repository
 public interface ArticleDao {
 	/**
 	 * 返回相应的数据集合
