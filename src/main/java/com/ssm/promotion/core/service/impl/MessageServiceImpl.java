@@ -65,8 +65,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public int updMessageType(String id) {
-        messageDao.updMessageType(id);
+    public int updMessageType(Message message) {
+        messageDao.updMessageType(message);
         log.info("update message type success");
         return 1;
     }

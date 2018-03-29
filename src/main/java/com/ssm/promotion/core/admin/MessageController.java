@@ -134,7 +134,7 @@ public class MessageController {
             throws Exception {
         int resultTotal = 0;
 
-        resultTotal = messageService.updateMessage(message);
+        resultTotal = messageService.updMessageType(message);
 
         log.info("request: message/update , " + message.toString());
 
@@ -145,44 +145,6 @@ public class MessageController {
         }
     }
 
-    /**
-     * 警告
-     *
-     * @param message
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "/isBad", method = RequestMethod.PUT)
-    @ResponseBody
-    public Result updateType(@PathVariable("ids") String ids ,
-                             @RequestBody Message message)
-            throws Exception {
-
-        if (ids.length() > 20) {
-            return ResultGenerator.genFailResult("ERROR");
-        }
-
-        String[] idsStr = ids.split(",");
-        for (int i = 0; i < idsStr.length; i++) {
-            messageService.deleteMessage(idsStr[i]);
-        }
-        log.info("request: article/delete , ids: " + ids);
-        return ResultGenerator.genSuccessResult();
-
-//
-//        int resultTotal = 0;
-//
-//
-//        resultTotal = messageService.updateMessageType(message);
-//
-//        log.info("request: message/update , " + message.toString());
-//
-//        if (resultTotal > 0) {
-//            return ResultGenerator.genSuccessResult();
-//        } else {
-//            return ResultGenerator.genFailResult("修改失败");
-//        }
-    }
 
 
     /**
@@ -223,6 +185,5 @@ public class MessageController {
         log.info("request: message/findById");
         return result;
     }
-
 
 }

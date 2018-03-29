@@ -42,9 +42,11 @@
 <div id="tb">
     <div>
         <a href="javascript:openArticleAddDialog()" class="easyui-linkbutton"
-           iconCls="icon-add" plain="true">添加</a> <a
+           iconCls="icon-add" plain="true">添加</a>
+        <a
             href="javascript:openArticleModifyDialog()"
-            class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> <a
+            class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a
             href="javascript:deleteArticle()" class="easyui-linkbutton"
             iconCls="icon-remove" plain="true">删除</a>
     </div>
@@ -191,9 +193,14 @@
             url: url,//url
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
+
+
             success: function (result) {
+                console.log(data);
+                debugger
                 console.log(result);//打印服务端返回的数据
                 if (result.resultCode == 200) {
+
                     $.messager.alert("系统提示", "保存成功");
                     $("#dlg").dialog("close");
                     $("#dg").datagrid("reload");

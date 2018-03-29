@@ -46,7 +46,7 @@
         where id=#{id}
     </update>
 
-    <update id="updMessageType" parameterType="String">
+    <update id="updMessageType" parameterType="Message">
         update ssm_message
         set
         is_bad=1

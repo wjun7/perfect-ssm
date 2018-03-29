@@ -44,7 +44,7 @@ public interface MessageDao {
      *
      * @return
      */
-    public int updMessageType(String id);
+    public int updMessageType(Message message);
 
 
     /**

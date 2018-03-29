@@ -43,10 +43,10 @@ public interface MessageService {
     /**
      * 设置警告
      *
-     * @param id
+     * @param message
      * @return
      */
-    public int updMessageType(String id);
+    public int updMessageType(Message message);
 
 
     /**

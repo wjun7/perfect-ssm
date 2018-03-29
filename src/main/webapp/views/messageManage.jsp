@@ -44,8 +44,8 @@
         <a href="javascript:openMessageAddDialog()" class="easyui-linkbutton"
            iconCls="icon-add" plain="true">添加</a>
         <a
-            href="javascript:changeType()"
-            class="easyui-linkbutton" iconCls="icon-edit" plain="true">警告</a>
+                href="javascript:openMessageModifyDialog()"
+                class="easyui-linkbutton" iconCls="icon-edit" plain="true">警告</a>
         <a
             href="javascript:deleteMessage()" class="easyui-linkbutton"
             iconCls="icon-remove" plain="true">删除</a>
@@ -171,55 +171,6 @@
 
     }
 
-    function changeType() {
-        var selectedRows = $("#dg").datagrid('getSelections');
-        if (selectedRows.length == 0) {
-            $.messager.alert("系统提示", "请选择要警告的评论！");
-            return;
-        }
-        var strIds = [];
-        for (var i = 0; i < selectedRows.length; i++) {
-            strIds.push(selectedRows[i].id);
-        }
-        var ids = strIds.join(",");
-        $.messager
-            .confirm(
-                "系统提示",
-                "您确认要警告这<font color=red>" + selectedRows.length
-                + "</font>条数据吗？",
-                function (r) {
-                    if (r) {
-                        $.ajax({
-                            type: "PUT",//方法类型
-                            dataType: "json",//预期服务器返回的数据类型
-                            url: "/messages/isBad" + ids,//url
-                            data: {},
-                            success: function (result) {
-                                console.log(result);//打印服务端返回的数据
-                                if (result.resultCode == 200) {
-                                    $.messager.alert(
-                                        "系统提示",
-                                        "数据已添加警告！");
-                                    $("#dg").datagrid(
-                                        "reload");
-                                }
-                                else {
-                                    $.messager.alert(
-                                        "系统提示",
-                                        "添加警告失败！");
-                                }
-
-                                ;
-                            },
-                            error: function () {
-                                $.messager.alert("ERROR！");
-                            }
-                        });
-                    }
-                });
-
-    }
-
 
     function openMessageAddDialog() {
         $("#addName").val(getCookie("userName"));
@@ -228,7 +179,7 @@
         method = "POST";
     }
 
-    function saveArticle() {
+    function saveMessage() {
         var addName = $("#addName").val();
         var content = editor.html();
         var id = $("#messageIdfm").val();
@@ -242,7 +193,7 @@
             success: function (result) {
                 console.log(result);//打印服务端返回的数据
                 if (result.resultCode == 200) {
-                    $.messager.alert("系统提示", "保存成功");
+                    $.messager.alert("系统提示", "操作成功");
                     $("#dlg").dialog("close");
                     $("#dg").datagrid("reload");
                     resetValue();
@@ -260,19 +211,17 @@
         });
     }
 
-//    function openArticleModifyDialog() {
-//        var selectedRows = $("#dg").datagrid('getSelections');
-//        if (selectedRows.length != 1) {
-//            $.messager.alert("系统提示", "请选择一条要编辑的数据！");
-//            return;
-//        }
-//        var row = selectedRows[0];
-//        $("#dlg").dialog("open").dialog("setTitle", "修改信息");
-//        $('#fm').form('load', row);
-//        editor.html(row.articleContent);
-//        method = "PUT";
-//        $("#articleIdfm").val(row.id);
-//    }
+    function openMessageModifyDialog() {
+        var selectedRows = $("#dg").datagrid('getSelections');
+        if (selectedRows.length != 1) {
+            $.messager.alert("系统提示", "请警告的评论！");
+            return;
+        }
+        var row = selectedRows[0];
+        method = "PUT";
+        $("#messageIdfm").val(row.id);
+        saveMessage();
+    }
 
     function formatHref(val, row) {
         return "<a href='${pageContext.request.contextPath}/message.html?id=" + row.id + "' target='_blank'>查看详情</a>";
