@@ -65,4 +65,12 @@ public interface MessageService {
      */
     public Message findById(String id);
 
+    /**
+     * 发表评论
+     * @param
+     * @param
+     * @return
+     */
+    public int addComment(Message message);
+
 }

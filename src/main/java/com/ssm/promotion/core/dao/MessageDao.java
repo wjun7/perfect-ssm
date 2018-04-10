@@ -2,8 +2,10 @@ package com.ssm.promotion.core.dao;
 
 
 import com.ssm.promotion.core.entity.Message;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -62,5 +64,8 @@ public interface MessageDao {
      * @return
      */
     public Message getMessageById(String id);
+
+    public int addComment(@Param("content")String content,
+                          @Param("date")Timestamp timestamp);
 
 }

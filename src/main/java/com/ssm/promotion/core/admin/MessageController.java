@@ -13,6 +13,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -30,6 +31,19 @@ public class MessageController {
 
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(MessageController.class);// 日志文件
+
+
+
+    @RequestMapping(value = "/list")
+    public String list(Model model){
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Message> messageList = messageService.findMessage(map);
+        model.addAttribute("messageList",messageList);
+        return "jsp/news/liuyanban2";
+    }
+
+
+
 
     @RequestMapping(value = "/datagrid", method = RequestMethod.POST)
     public String list(
@@ -95,31 +109,7 @@ public class MessageController {
         return result;
     }
 
-    /**
-     * 添加
-     *
-     * @param message
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    @ResponseBody
-    public Result save(@RequestBody Message message)
-            throws Exception {
-        int resultTotal = 0;
 
-        message.setMessageCreateDate(DateUtil.getCurrentDateStr());
-
-        resultTotal = messageService.addMessage(message);
-
-        log.info("request: message/save , " + message.toString());
-
-        if (resultTotal > 0) {
-            return ResultGenerator.genSuccessResult();
-        } else {
-            return ResultGenerator.genFailResult("添加失败");
-        }
-    }
 
     /**
      * 修改
@@ -185,5 +175,32 @@ public class MessageController {
         log.info("request: message/findById");
         return result;
     }
+
+    /**
+     * 添加
+     *
+     * @param message
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    @ResponseBody
+    public Result save(@RequestBody Message message)
+            throws Exception {
+        int resultTotal = 0;
+
+        message.setMessageCreateDate(DateUtil.getCurrentDateStr());
+
+        resultTotal = messageService.addMessage(message);
+
+        log.info("request: message/save , " + message.toString());
+
+        if (resultTotal > 0) {
+            return ResultGenerator.genSuccessResult();
+        } else {
+            return ResultGenerator.genFailResult("添加失败");
+        }
+    }
+
 
 }

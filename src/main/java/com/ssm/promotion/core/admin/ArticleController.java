@@ -12,6 +12,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -28,6 +29,15 @@ public class ArticleController {
     private ArticleService articleService;
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(ArticleController.class);// 日志文件
+
+
+    @RequestMapping(value = "/list")
+    public String list(Model model){
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Article> articleList = articleService.findArticle(map);
+        model.addAttribute("articleList",articleList);
+        return "jsp/news/zhuye";
+    }
 
     /**
      * 查找相应的数据集合

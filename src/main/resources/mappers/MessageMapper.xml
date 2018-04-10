@@ -9,6 +9,7 @@
         <result property="messageContent" column="message_content"/>
         <result property="isBad" column="is_bad"/>
         <result property="addName" column="add_name"/>
+        <result property="date" column="date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
     </resultMap>
 
     <select id="findMessages" parameterType="Map" resultMap="MessageResult">
@@ -22,6 +23,11 @@
             limit #{start},#{size}
         </if>
     </select>
+
+    <!--<insert id="addComment">-->
+        <!--insert into ssm_message(message_content,message_create_date) values(#{content},#{date})-->
+    <!--</insert>-->
+
 
     <select id="getTotalMessages" parameterType="Map" resultType="Long">
         select count(*) from ssm_message

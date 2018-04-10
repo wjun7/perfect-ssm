@@ -13,7 +13,7 @@
     <!-- 视图解析器 -->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"></property>
     </bean>
 
@@ -49,6 +49,9 @@
 
     <!-- 使用了<url-pattern>/</url-pattern>,所以要对静态资源进行处理 -->
     <mvc:default-servlet-handler/>
+
+    <!-- 定义无需Controller的url<->view直接映射 -->
+    <mvc:view-controller path="/" view-name="jsp/news/zhuye" />
 
     <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
     <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"

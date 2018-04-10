@@ -94,4 +94,17 @@ public class MessageServiceImpl implements MessageService {
         return null;
     }
 
+    @Override
+    public int addComment(Message message) {
+        if(message.getMessageContent()== null||message.getMessageContent().length()>144){
+            return 0;
+        }
+        message.setMessageContent(AntiXssUtil.replaceHtmlCode(message.getMessageContent()));
+        if(messageDao.insertMessage(message)>0){
+            log.info("insert message success,save message to redis");
+            redisUtil.put(Constants.MESSAGE_CACHE_KEY + message.getId(), message);
+            return 1;
+        }
+        return 0;
+    }
 }

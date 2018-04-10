@@ -32,7 +32,7 @@
 
     function DisplayListItems(list) {
         $.each(list, function (index, element) {
-            var itemHTML = ["<li><a href='article.html?id=" + element.id + "'>",
+            var itemHTML = ["<li><a href=" + element.id + "'article.html?id='>",
                 "<div>",
                 element.articleTitle,
                 "</div><a/>",
